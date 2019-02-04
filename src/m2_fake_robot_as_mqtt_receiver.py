@@ -11,12 +11,14 @@
 import mqtt_remote_method_calls as com
 import time
 
-
 class DelegateThatReceives(object):
+    def __init__(self):
+        self.left_motor = Motor('B')
+        self.right_motor = Motor("C")
 
-    def forward(self, string, x, y):
-        print(string)
-        print("left", x, "right", y)
+    def forward(self, left_speed, right_speed):
+        self.left_motor.turn_on(left_speed)
+        self.right_motor.turn_on(right_speed)
 
 def main():
     name1 = input("Enter one name (subscriber): ")
